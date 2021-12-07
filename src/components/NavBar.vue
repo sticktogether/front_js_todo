@@ -1,13 +1,10 @@
 <template>
-  
+  <h2>Это нав бар будущий</h2>
 </template>
 
 <script>
 export default {
-  name: 'NavBar',
-  props: {
-    msg: String
-  }
+  name: 'NavBar'
 }
 </script>
 

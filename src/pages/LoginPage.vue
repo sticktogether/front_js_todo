@@ -1,5 +1,5 @@
 <template>
-  <form class="login-form auth-form">
+  <form @submit.prevent="onFormSubmit" class="login-form auth-form">
     <div class="form-field">
       <label for="login">Логин</label>
       <input id="login" type="text" required>
@@ -23,6 +23,9 @@ export default {
 
   },
   methods: {
+    onFormSubmit () {
+      this.$router.push('/')
+    },
     redirect () {
       this.$router.push('/registration')
     }

@@ -8,7 +8,8 @@ const routes = [
     path: '/',
     name: 'home',
     meta: {
-      title: 'Список дел'
+      title: 'Список дел',
+      layout: 'main-layout'
     },
     component: () => import('@/pages/HomePage')
   },
@@ -16,7 +17,8 @@ const routes = [
     path: '/info',
     name: 'about',
     meta: {
-      title: 'Информация'
+      title: 'Информация',
+      layout: 'main-layout'
     },
     component: () => import('@/pages/InfoPage')
   },
@@ -24,7 +26,8 @@ const routes = [
     path: '/login',
     name: 'login',
     meta: {
-      title: 'Вход'
+      title: 'Вход',
+      layout: 'auth-layout'
     },
     component: () => import('@/pages/LoginPage')
   },
@@ -32,7 +35,8 @@ const routes = [
     path: '/registration',
     name: 'registration',
     meta: {
-      title: 'Регистрация'
+      title: 'Регистрация',
+      layout: 'auth-layout'
     },
     component: () => import('@/pages/RegistrationPage')
   }
