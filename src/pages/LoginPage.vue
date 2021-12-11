@@ -2,11 +2,11 @@
   <form @submit.prevent="onFormSubmit" class="login-form auth-form">
     <div class="form-field">
       <label for="login">Логин</label>
-      <input id="login" type="text" required>
+      <input v-model="login" id="login" type="text" required>
     </div>
     <div class="form-field">
       <label for="password">Пароль</label>
-      <input id="password" type="text" required>
+      <input v-model="password" id="password" type="text" required>
     </div>
     <button class="submit-btn" type="submit">Войти</button>
     <div class="action-link">
@@ -17,14 +17,30 @@
 </template>
 
 <script>
+import { doLogin } from '@/netClient/dataService'
 export default {
   name: 'LoginPage',
+  data: () => ({
+    login: '',
+    password: ''
+  }),
   async mounted () {
 
   },
   methods: {
-    onFormSubmit () {
-      this.$router.push('/')
+    async onFormSubmit () {
+      try {
+        const token = await doLogin(
+          this.login.trim(), // trim убирает пробелы слева и справа
+          this.password.trim()
+        )
+        console.warn({ token })
+        if (token) {
+          this.$router.push('/')
+        }
+      } catch (error) {
+        console.error({ error })
+      }
     },
     redirect () {
       this.$router.push('/registration')

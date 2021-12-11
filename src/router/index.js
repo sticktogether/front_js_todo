@@ -43,7 +43,20 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
+})
+
+// Защита роутов
+router.beforeEach((to, from, next) => {
+  // Деструктуризация объекта
+  const { accessToken } = localStorage
+  if (accessToken || to.name === 'login' || to.name === 'registration') {
+    next()
+  } else {
+    next('/login')
+  }
 })
 
 export default router
