@@ -8,8 +8,6 @@ export async function doRegister (login, password, email) {
       password,
       email
     })
-    // res.status(200).json({ message: 'ok' });
-    // response body/data/headers
     return response.data
   } catch (error) {
     console.error({ error })
@@ -37,11 +35,26 @@ export async function doLogout () {
     const response = await http.post('/users/logout', {}, {
       headers: {
         'Content-Type': 'application/json',
-        'x-access-token': localStorage.token
+        'x-access-token': localStorage.accessToken
       }
     })
     localStorage.removeItem('accessToken')
     return response.data
+  } catch (error) {
+    console.error({ error })
+    throw error
+  }
+}
+
+export async function fetchTodoList () {
+  try {
+    const response = await http.get('/todos', {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.accessToken
+      }
+    })
+    return response.data?.todos || []
   } catch (error) {
     console.error({ error })
     throw error
