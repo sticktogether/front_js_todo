@@ -1,17 +1,17 @@
 <template>
   <div class="nav">
     <div class="link-wrapper">
-      <div class="nav-links">
-        <router-link class="nav-link" exact to="/">Список дел</router-link>
-        <router-link class="nav-link" to="/info">Информация (инсайдерская)</router-link>
-      </div>
-      <a @click="onLogoutClicked" class="logout nav-link">Выйти</a>
+      <ul>
+        <li><router-link class="nav-link" exact to="/">Список дел</router-link></li>
+        <li><router-link class="nav-link" to="/info">Информация (инсайдерская)</router-link></li>
+        <li class="logoutLi"><a @click="onLogoutClicked" class="logout nav-link">Выйти</a></li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { doLogout } from '@/netClient/dataService'
+import { doLogout } from '@/netClient/todoService'
 export default {
   name: 'NavBar',
   methods: {

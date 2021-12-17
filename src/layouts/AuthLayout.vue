@@ -18,10 +18,9 @@ export default {
 <style lang="scss" scoped>
   .auth-layout {
     width: 100%;
-    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
 </style>

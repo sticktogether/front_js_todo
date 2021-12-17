@@ -5,4 +5,22 @@ const netClient = axios.create({
   timeout: 10000
 })
 
+netClient.interceptors.request.use(
+  (request) => {
+    const { accessToken } = localStorage
+    if (accessToken) {
+      request.headers = {
+        'Content-Type': 'application/json',
+        'x-access-token': accessToken
+      }
+    }
+
+    return request
+  },
+  (error) => {
+    console.error()
+    return Promise.reject(error)
+  }
+)
+
 export default netClient

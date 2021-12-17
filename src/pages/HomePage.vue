@@ -1,29 +1,28 @@
 <template>
   <div class="home-page">
-    <section class="create-todo">
-      <!-- Верстка добавления TODO -->
-    </section>
-    <section class="todo-list">
-      <h2>TODO LIST:</h2>
-      <ul v-for="todoItem in todoList" :key="todoItem.id">
-        <li>
-          <div class="title">{{ todoItem.title }}</div>
-          <div class="checkbox">
-            <input type="checkbox" :checked="todoItem.isCompleted">
-          </div>
-        </li>
-      </ul>
-    </section>
+    <CreateTodo @todo-created='onTodoCreated' />
+    <ul class="todo-list flex-item">
+      <div v-for="todoItem in todoList" :key="todoItem.id">
+        <TodoItem :todo="todoItem" @todo-deleted="fetchTodoList" @todo-done="fetchTodoList" />
+      </div>
+    </ul>
   </div>
 </template>
 
 <script>
-import { fetchTodoList } from '@/netClient/dataService'
+import CreateTodo from '@/components/CreateTodo'
+import TodoItem from '@/components/TodoItem'
+import { fetchTodoList } from '@/netClient/todoService'
 export default {
   name: 'HomePage',
   data: () => ({
-    todoList: []
+    todoList: [],
+    todoName: ''
   }),
+  components: {
+    CreateTodo,
+    TodoItem
+  },
   created () {
     this.fetchTodoList()
   },
@@ -34,6 +33,9 @@ export default {
       } catch (error) {
         console.error({ error })
       }
+    },
+    onTodoCreated (createdTodo) {
+      this.todoList.unshift(createdTodo)
     }
   }
 }

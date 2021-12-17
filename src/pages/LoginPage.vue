@@ -1,23 +1,27 @@
 <template>
-  <form @submit.prevent="onFormSubmit" class="login-form auth-form">
-    <div class="form-field">
-      <label for="login">Логин</label>
-      <input v-model="login" id="login" type="text" required>
-    </div>
-    <div class="form-field">
-      <label for="password">Пароль</label>
-      <input v-model="password" id="password" type="text" required>
-    </div>
-    <button class="submit-btn" type="submit">Войти</button>
-    <div class="action-link">
-      <span>Нет аккаунта?</span>
-      <a @click="redirect" class="link-btn">Зарегистрироваться</a>
-    </div>
-  </form>
+  <div class="login flex-item item-2">
+    <form @submit.prevent="onFormSubmit" class="login-form auth-form">
+      <ul>
+        <li class="form-field info-2">
+          <label for="login">Логин</label>
+          <input v-model="login" id="login" type="text" placeholder="Введите логин" class="input-info" required>
+        </li>
+        <li class="form-field info-2">
+          <label for="password">Пароль</label>
+          <input v-model="password" id="password" type="password" placeholder="Введите пароль" class="input-info" required>
+        </li>
+        <button class="submit-btn" type="submit">Войти</button>
+        <li class="action-link info-2">
+          <span>Нет аккаунта?</span>
+          <a @click="redirect" class="link-btn">Зарегистрироваться</a>
+        </li>
+      </ul>
+    </form>
+  </div>
 </template>
 
 <script>
-import { doLogin } from '@/netClient/dataService'
+import { doLogin } from '@/netClient/authService'
 export default {
   name: 'LoginPage',
   data: () => ({

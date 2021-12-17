@@ -1,34 +1,35 @@
+
 <template>
-  <form @submit.prevent="onFormSubmit" class="registration-form auth-form">
-    <div v-if="false">
-        зависит от бэка, если емайл и логин - одно и тоже, то можно не указывать.
-        добавить возможность ввести имя пользаку. /v-model
-    </div>
-    <div class="form-field">
-      <!-- ({email}) -->
-      <label for="email">Почта</label>
-      <input v-model="email" id="email" type="text" required>
-    </div>
-    <div class="form-field ">
-      <!-- ({login}) -->
-      <label for="login">Логин</label>
-      <input v-model="login" id="login" type="text" required>
-    </div>
-    <div class="form-field">
-      <!-- ({password}) -->
-      <label for="password">Пароль</label>
-      <input v-model="password" id="password" type="text" required>
-    </div>
-    <button class="submit-btn" type="submit">Зарегистрироваться</button>
-    <div class="action-link">
-      <span>Уже есть аккаунт?</span>
-      <a @click="redirect" class="link-btn">Войти</a>
-    </div>
-  </form>
+  <div class="registration flex-item item-2">
+    <form @submit.prevent="onFormSubmit" class="registration-form auth-form">
+      <ul>
+        <li class="form-field info-2">
+          <!-- ({email}) -->
+          <label for="email">Почта</label>
+          <input v-model="email" id="email" type="text" placeholder="Введите почту" class="input-info" required>
+        </li>
+        <li class="form-field info-2">
+          <!-- ({login}) -->
+          <label for="login">Логин</label>
+          <input v-model="login" id="login" type="text" placeholder="Введите логин" class="input-info" required>
+        </li>
+        <li class="form-field info-2">
+          <!-- ({password}) -->
+          <label for="password">Пароль</label>
+          <input v-model="password" id="password" type="password" placeholder="Введите пароль" class="input-info" required>
+        </li>
+        <button class="submit-btn reg-btn" type="submit">Зарегистрироваться</button>
+        <li class="action-link info-2">
+          <span>Уже есть аккаунт?</span> <br>
+          <a @click="redirect" class="link-btn">Войти</a>
+        </li>
+      </ul>
+    </form>
+  </div>
 </template>
 
 <script>
-import { doRegister } from '@/netClient/dataService'
+import { doRegister } from '@/netClient/authService'
 export default {
   name: 'RegistrationPage',
   data: () => ({

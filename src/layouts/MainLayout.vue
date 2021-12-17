@@ -1,6 +1,6 @@
 <template>
     <div class="main-layout">
-        <NavBar/>
+        <NavBar class="NavBar"/>
         <h2 class="page-title">
             {{$route.meta.title}}
         </h2>
@@ -21,13 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .main-layout {
-        width: 100%;
-        max-width: 700px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
 
 </style>
